@@ -1,0 +1,27 @@
+{
+  "name": "react-fixed-bottom",
+  "version": "0.0.1",
+  "description": "React component to fix a child element to the bottom of the window",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/turo/react-fixed-bottom.git"
+  },
+  "keywords": [
+    "react",
+    "position",
+    "fixed",
+    "offset",
+    "scroll",
+    "bottom"
+  ],
+  "author": "Esau Suarez <esau@turo.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/turo/react-fixed-bottom/issues"
+  },
+  "homepage": "https://github.com/turo/react-fixed-bottom#readme"
+}
