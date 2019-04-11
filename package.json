@@ -1,10 +1,12 @@
 {
   "name": "react-fixed-bottom",
   "version": "0.0.1",
-  "description": "React component to fix a child element to the bottom of the window",
+  "description": "React component to make fixed:bottom styles usable in Safari mobile",
   "main": "dist/index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "build": "parcel build src/index.js",
+    "demo": "parcel demo/index.html"
   },
   "repository": {
     "type": "git",
@@ -23,5 +25,20 @@
   "bugs": {
     "url": "https://github.com/turo/react-fixed-bottom/issues"
   },
-  "homepage": "https://github.com/turo/react-fixed-bottom#readme"
+  "homepage": "https://github.com/turo/react-fixed-bottom#readme",
+  "peerDependencies": {
+    "react": "^16.5.0"
+  },
+  "dependencies": {
+    "lodash.throttle": "^4.1.1",
+    "prop-types": "^15.6.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/preset-react": "^7.0.0",
+    "parcel-bundler": "^1.12.3",
+    "react": "^16.5.0",
+    "react-dom": "^16.5.0"
+  }
 }
