@@ -6,3 +6,4 @@ jsconfig.json
 .vscode/
 *.iml
 .cache/
+coverage/

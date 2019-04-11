@@ -4,7 +4,7 @@
   "description": "React component to make fixed:bottom styles usable in Safari mobile",
   "main": "dist/index.js",
   "scripts": {
-    "test": "test",
+    "test": "jest",
     "build": "parcel build src/index.js",
     "demo": "parcel demo/index.html"
   },
@@ -36,9 +36,13 @@
   "devDependencies": {
     "@babel/core": "^7.4.3",
     "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/preset-env": "^7.4.3",
     "@babel/preset-react": "^7.0.0",
+    "babel-jest": "^24.7.1",
+    "jest": "^24.7.1",
     "parcel-bundler": "^1.12.3",
     "react": "^16.5.0",
-    "react-dom": "^16.5.0"
+    "react-dom": "^16.5.0",
+    "react-test-renderer": "^16.8.6"
   }
 }
