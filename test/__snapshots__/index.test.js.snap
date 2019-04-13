@@ -1,15 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FixedBottom should render children with expected props 1`] = `
+exports[`<FixedBottom /> tests it should render the children with expected props 1`] = `
 <div
-  className="childComponent"
+  className="childElement"
   style={
     Object {
       "bottom": 20,
       "position": "fixed",
+      "top": 20,
     }
   }
 >
-  I'm a lonely child
+  Dummy content
 </div>
 `;
