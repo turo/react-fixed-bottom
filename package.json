@@ -39,6 +39,8 @@
     "@babel/preset-env": "^7.4.3",
     "@babel/preset-react": "^7.0.0",
     "babel-jest": "^24.7.1",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
     "jest": "^24.7.1",
     "parcel-bundler": "^1.12.3",
     "react": "^16.5.0",
