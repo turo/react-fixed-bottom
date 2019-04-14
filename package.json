@@ -7,7 +7,7 @@
     "build": "yarn clean; NODE_ENV=production yarn bundle",
     "bundle": "parcel build src/index.js --global react-fixed-bottom --target browser",
     "clean": "rimraf dist",
-    "demo": "parcel demo/index.html",
+    "demo": "yarn build; parcel demo/index.html --out-dir dist/demo",
     "test": "jest"
   },
   "repository": {
