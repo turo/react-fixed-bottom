@@ -79,7 +79,7 @@ export default class FixedBottom extends PureComponent {
       style: {
         ...children.props.style,
         bottom,
-        position: 'fixed'
+        position: 'fixed',
       },
     });
     return (
