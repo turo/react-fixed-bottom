@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import FixedBottom from '../src/index';
+import FixedBottom from '../src/FixedBottom';
 
 configure({adapter: new Adapter()});
 
@@ -28,11 +28,7 @@ describe('<FixedBottom /> tests', () => {
   });
 
   test('it should render the children with expected props', () => {
-    const component = renderer.create(
-      <FixedBottom offset={offset}>
-        {childElement}
-      </FixedBottom>
-    );
+    const component = renderer.create(<FixedBottom offset={offset}>{childElement}</FixedBottom>);
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
@@ -55,7 +51,6 @@ describe('<FixedBottom /> tests', () => {
   });
 
   describe('componentDidMount', () => {
-
     let addEventListenerSpy;
     let computeOffsetBottomStub;
 
