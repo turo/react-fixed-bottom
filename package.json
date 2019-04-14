@@ -41,10 +41,24 @@
     "babel-jest": "^24.7.1",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
+    "husky": ">=1",
     "jest": "^24.7.1",
+    "lint-staged": ">=8",
     "parcel-bundler": "^1.12.3",
+    "prettier": "^1.17.0",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
     "react-test-renderer": "^16.8.6"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,css,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
