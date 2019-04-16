@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "React component to make fixed:bottom styles usable in Safari mobile",
   "main": "dist/index.js",
+  "engines": {
+    "node": "^10.15.0",
+    "yarn": "^1.15.0"
+  },
   "scripts": {
     "build": "yarn clean; NODE_ENV=production yarn bundle",
     "bundle": "parcel build src/index.js --global react-fixed-bottom --target browser",
