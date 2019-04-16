@@ -1,9 +1,18 @@
 language: node_js
 node_js:
-  - "10"
+- '10'
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.15.2
   - export PATH=$HOME/.yarn/bin:$PATH
 script:
   - yarn test
   - yarn build
+deploy:
+  skip_cleanup: true
+  provider: npm
+  email: esau@turo.com
+  api_key:
+    secure: KMgdwwT8dDZsH0tvsJzx+9Y6nOi0X02yeiJvQIm1n24UF6BEufh05fg26ywE5VxDvTgGFH8Kh4/tCksf1yRq3u6ENfjlHLsOC8cHm5FKsdohvVcALVxowZHltywVPlkGQDaM4rb8z9kuuQyyreuSKmAYlscj/Qb9zdDCHvI2yIK1lFDAbMpoFQlhSkHPachyj9AnklkBN38aXYgheE+fiDFErIAwYOje4BYEkrQpbfOtXsGaOKOOZN6PpUs7sLl8R1i8DfSTML6YI8zmkzZeb9/cbROv8Z4H1WA75JOAUN4QLJtZSVSRHEy9KaJrEnKq0KeqkiY6+zsdDpdC2kPyIVGslWmG/v2VDvUmMdn9TunVSmIkTWXFPmzy8RI5dPd3/MTlTfNxLMsYgkqUvYrJcomr+CoOCRGOYFpBvWvXTevVrLUIV7WjzF+hdz9QhgqAuhS0Y6ziejiFZcO2FmFPYHS1zmkUuK55pXG0z5YobQOF3BO/FTtsZNSbF/4INRuUH2NzR2VUKNtPEE2+kTgDrGPgXYqughOfaabQZxvJxt7Y4dmjhgV0WS0ImwuMnjiJl4XlduN9EtLgaCWjLhUiidv3SVNBY/ibHgFYZhIY7kKQeYi3OI5QXzi3Jyo1+rmp484eY1eCWmzQIkTh3G/SdNQdF2jP1FXTO3pxHDp91zc=
+  on:
+    tags: true
+    repo: turo/react-fixed-bottom
