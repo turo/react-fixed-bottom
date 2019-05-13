@@ -1,6 +1,6 @@
 {
   "name": "react-fixed-bottom",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "React component to make fixed:bottom styles usable in Safari mobile",
   "main": "dist/index.js",
   "engines": {
