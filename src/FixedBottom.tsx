@@ -1,9 +1,18 @@
-import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
+import React, {ReactElement, RefObject} from 'react';
 import throttle from 'lodash.throttle';
 import {isSafariMobile} from './util';
+import {Cancelable} from 'lodash';
 
 const SAFARI_MOBILE_BOTTOM_MENU_HEIGHT = 44;
+
+export interface FixedBottomProps {
+  children: React.ReactChild;
+  offset?: number;
+}
+
+export interface FixedBottomState {
+  bottom: number;
+}
 
 /**
  * Component that allows sticking elements to the bottom of the screen:
@@ -20,25 +29,21 @@ const SAFARI_MOBILE_BOTTOM_MENU_HEIGHT = 44;
  *   4. On mount, check whether the overflow bar is already
  *   visible
  */
-export default class FixedBottom extends PureComponent {
-  static propTypes = {
-    children: PropTypes.element.isRequired,
-    offset: PropTypes.number,
-  };
+export class FixedBottom extends React.PureComponent<FixedBottomProps> {
 
-  static defaultProps = {
-    offset: 0,
-  };
-
-  state = {
-    bottom: this.props.offset,
+  state: FixedBottomState = {
+    bottom: this.props.offset || 0,
   };
 
   isSafariMobile = isSafariMobile();
 
-  anchorRef = React.createRef();
+  anchorRef: RefObject<HTMLDivElement> = React.createRef();
 
-  constructor(props) {
+  deferredComputeOffsetBottom: number;
+
+  handleScroll: (() => void) & Cancelable;
+
+  constructor(props: FixedBottomProps) {
     super(props);
     this.handleScroll = throttle(this.computeOffsetBottom, 200);
   }
@@ -64,8 +69,8 @@ export default class FixedBottom extends PureComponent {
     }
 
     const {bottom} = this.anchorRef.current.getBoundingClientRect();
-    const {offset} = this.props;
-    if (Math.floor(bottom) > window.innerHeight) {
+    const {offset = 0} = this.props;
+    if (Math.floor(Number(bottom)) > window.innerHeight) {
       this.setState({bottom: offset + SAFARI_MOBILE_BOTTOM_MENU_HEIGHT});
     } else {
       this.setState({bottom: offset});
@@ -75,9 +80,9 @@ export default class FixedBottom extends PureComponent {
   render() {
     const {bottom} = this.state;
     const {children, offset} = this.props;
-    const node = React.cloneElement(React.Children.only(children), {
+    const node = React.cloneElement(children as ReactElement, {
       style: {
-        ...children.props.style,
+        ...(children as ReactElement).props.style,
         bottom,
         position: 'fixed',
       },

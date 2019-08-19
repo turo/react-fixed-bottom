@@ -1,8 +1,10 @@
+import 'jest';
+import Adapter from 'enzyme-adapter-react-16';
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {configure, shallow} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import FixedBottom from '../src/FixedBottom';
+
+import {configure, shallow, ShallowWrapper} from 'enzyme';
+import {FixedBottom, FixedBottomProps, FixedBottomState} from '~/FixedBottom';
 
 configure({adapter: new Adapter()});
 
@@ -15,8 +17,8 @@ const childElementProps = {
 const childElement = <div {...childElementProps} />;
 
 describe('<FixedBottom /> tests', () => {
-  let wrapper;
-  let instance;
+  let wrapper: ShallowWrapper<any, FixedBottomState, FixedBottom>;
+  let instance: FixedBottom;
 
   beforeEach(() => {
     wrapper = shallow(<FixedBottom offset={offset}>{childElement}</FixedBottom>);
@@ -39,20 +41,18 @@ describe('<FixedBottom /> tests', () => {
     mockedThrottle.mockImplementation(fn => fn);
     wrapper = shallow(<FixedBottom offset={offset}>{childElement}</FixedBottom>);
     instance = wrapper.instance();
+    const mockDiv = document.createElement('div');
+    mockDiv.getBoundingClientRect = jest.fn().mockReturnValue({bottom: window.innerHeight});
     instance.anchorRef = {
-      current: {
-        getBoundingClientRect: jest.fn().mockReturnValue({
-          bottom: window.innerHeight,
-        }),
-      },
+      current: mockDiv,
     };
     instance.handleScroll();
-    expect(instance.anchorRef.current.getBoundingClientRect).toHaveBeenCalledTimes(1);
+    expect(mockDiv.getBoundingClientRect).toHaveBeenCalledTimes(1);
   });
 
   describe('componentDidMount', () => {
-    let addEventListenerSpy;
-    let computeOffsetBottomStub;
+    let addEventListenerSpy: jest.SpyInstance<void, any>;
+    let computeOffsetBottomStub: jest.Mock<any, any>;
 
     beforeEach(() => {
       jest.useFakeTimers();
@@ -79,8 +79,8 @@ describe('<FixedBottom /> tests', () => {
   });
 
   describe('componentWillUnmount', () => {
-    let clearTimeoutSpy;
-    let removeEventListenerSpy;
+    let clearTimeoutSpy: jest.SpyInstance<void, [(number | undefined)?]>;
+    let removeEventListenerSpy: jest.SpyInstance<void, [string, EventListenerOrEventListenerObject, (boolean | EventListenerOptions | undefined)?]>;
 
     beforeEach(() => {
       removeEventListenerSpy = jest.spyOn(window, 'removeEventListener');
@@ -115,10 +115,10 @@ describe('<FixedBottom /> tests', () => {
     });
 
     test('should add the safari menu height to the offset if it is hiding the element', () => {
+      const mockDiv = document.createElement('div');
+      mockDiv.getBoundingClientRect = jest.fn().mockReturnValue({bottom: window.innerHeight + 10});
       instance.anchorRef = {
-        current: {
-          getBoundingClientRect: jest.fn().mockReturnValue({bottom: window.innerHeight + 10}),
-        },
+        current: mockDiv
       };
       expect(wrapper.state().bottom).toBe(offset);
       instance.computeOffsetBottom();
@@ -126,10 +126,10 @@ describe('<FixedBottom /> tests', () => {
     });
 
     test('should use the provided offset otherwise', () => {
+      const mockDiv = document.createElement('div');
+      mockDiv.getBoundingClientRect = jest.fn().mockReturnValue({bottom: window.innerHeight - offset});
       instance.anchorRef = {
-        current: {
-          getBoundingClientRect: jest.fn().mockReturnValue({bottom: window.innerHeight - offset}),
-        },
+        current: mockDiv,
       };
       expect(wrapper.state().bottom).toBe(offset);
       instance.computeOffsetBottom();
@@ -146,17 +146,6 @@ describe('<FixedBottom /> tests', () => {
         bottom: offset,
         position: 'fixed',
       });
-    });
-
-    test('should throw if more than a child is provided', () => {
-      const renderingTwoChildren = () =>
-        shallow(
-          <FixedBottom offset={20}>
-            <div>1</div>
-            <div>2</div>
-          </FixedBottom>
-        );
-      expect(renderingTwoChildren).toThrow();
     });
 
     test('should render an anchor div stuck to bottom when it is safari mobile', () => {
@@ -176,7 +165,7 @@ describe('<FixedBottom /> tests', () => {
     });
 
     test('should have an offset of 0 by default', () => {
-      const defaultPropsWrapper = shallow(
+      const defaultPropsWrapper: ShallowWrapper<FixedBottomProps, FixedBottomState, FixedBottom> = shallow(
         <FixedBottom>
           <div>hello</div>
         </FixedBottom>
