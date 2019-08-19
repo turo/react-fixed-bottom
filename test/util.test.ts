@@ -1,10 +1,10 @@
-import {isSafariMobile} from '../src/util';
+import {isSafariMobile} from '~/util';
 
 describe('util.js tests', () => {
   let userAgentSpy;
 
   beforeEach(() => {
-    userAgentSpy = jest.spyOn(global.navigator, 'userAgent', 'get');
+    userAgentSpy = jest.spyOn(navigator, 'userAgent', 'get');
   });
 
   test('isSafariMobile should be false when user agent does not match an apple device', () => {

@@ -5,7 +5,7 @@
  *
  * @return {boolean}
  */
-export function isSafariMobile() {
+export function isSafariMobile(): boolean {
   if (typeof window === 'undefined' || typeof window.navigator === 'undefined') {
     return false;
   }
