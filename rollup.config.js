@@ -2,7 +2,7 @@ import commonjs from 'rollup-plugin-commonjs';
 import resolve from 'rollup-plugin-node-resolve';
 import sourceMaps from 'rollup-plugin-sourcemaps';
 import typescript from 'rollup-plugin-typescript2';
-// import {terser} from 'rollup-plugin-terser';
+import {terser} from 'rollup-plugin-terser';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 
 // eslint-disable-next-line import/no-default-export
@@ -22,9 +22,9 @@ export default {
     sourceMaps(),
     typescript({
       clean: true,
-      tsconfig: 'tsconfig.json',
+      tsconfig: 'tsconfig.build.json',
     }),
-    // terser(),
+    terser(),
   ],
   treeshake: true,
 };
