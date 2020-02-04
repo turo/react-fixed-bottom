@@ -4,10 +4,6 @@
   "description": "React component to make fixed:bottom styles usable in Safari mobile",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
-  "engines": {
-    "node": "^10.13.0",
-    "yarn": "^1.10.1"
-  },
   "scripts": {
     "build": "rollup -c",
     "clean": "rimraf dist",
