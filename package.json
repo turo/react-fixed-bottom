@@ -54,7 +54,7 @@
     "react-dom": "^16.5.0",
     "react-test-renderer": "^16.8.6",
     "rimraf": "^3.0.2",
-    "rollup": "^1.19.4",
+    "rollup": "^2.37.0",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.0.2",
     "rollup-plugin-node-resolve": "^5.2.0",
