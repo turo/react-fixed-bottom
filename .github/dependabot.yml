@@ -1,10 +1,4 @@
 version: 2
-registries:
-  npm-registry-turo-jfrog-io-turo-api-npm-npm:
-    type: npm-registry
-    url: https://turo.jfrog.io/turo/api/npm/npm/
-    username: "${{secrets.NPM_REGISTRY_TURO_JFROG_IO_TURO_API_NPM_NPM_USERNAME}}"
-    password: "${{secrets.NPM_REGISTRY_TURO_JFROG_IO_TURO_API_NPM_NPM_PASSWORD}}"
 
 updates:
 - package-ecosystem: npm
