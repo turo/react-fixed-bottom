@@ -5,7 +5,7 @@ updates:
   directory: "/"
   schedule:
     interval: daily
-  open-pull-requests-limit: 20
+  open-pull-requests-limit: 40
   assignees:
   - Toolo
   ignore:
@@ -69,5 +69,3 @@ updates:
   - dependency-name: "@types/react-test-renderer"
     versions:
     - 17.0.0
-  registries:
-  - npm-registry-turo-jfrog-io-turo-api-npm-npm
